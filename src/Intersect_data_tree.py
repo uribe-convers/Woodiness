@@ -11,6 +11,8 @@ Simon Uribe-Convers - Nov 06, 2017 - http://simonuribe.com
 import sys
 from Bio import Phylo
 import tree_reader
+import re
+import os
 
 # Read data from GlobalTreeSearch
 x = open("global_tree_search_trees.csv", "r", encoding="ISO-8859-1")
@@ -25,8 +27,9 @@ for line in x:
 print("Species with trait data: %d" %len(woody_species))
 
 # Get tip names from tree
+
 # Big tree
-y = open("ALLOTB.tre", "r")
+y = open("ALLOTB_binary_Names.tre", "r")
 # Genbank data tree
 # y = open("GBOTB.tre", "r")
 y.seek(0)
@@ -41,7 +44,6 @@ print("Tips in the tree: %d" %len(tips))
 # tree2.count_terminals()
 # tips2 = tree2.get_terminals()
 # len(tips2)
-# tree2.draw
 
 # Find Intersect
 species_intersect = list(set(woody_species) & set(tips))
@@ -57,12 +59,22 @@ for k in woody_species:
     data_dic[k] = ""
 
 data = []
+data.append("Species,Woodiness")
 for i in tips:
     try:
         data_dic[i]
-        data.append(i + "\t1")
+        data.append(i + ",1")
     except:
-        data.append(i + "\t0")
+        data.append(i + ",0")
+
+data2 = []
+data2.append("%d 1" % len(tips))
+for i in tips:
+    try:
+        data_dic[i]
+        data2.append(i + "\t1")
+    except:
+        data2.append(i + "\t0")
 
 # Using sets, MEDIUM (~6 minutes)
 # data_set = set({})
@@ -82,8 +94,27 @@ for i in tips:
 
 len(data)
 
-data = "\r".join(data)
+data = "\n".join(data)
+data2 = "\n".join(data2)
 
-s = open("Species_with_Traits.txt", "w")
+# Cleaning
+# If the species name have periods or quotes in them, remove them from the tree and traits
+# if "." in data or "'" in data:
+#     # data = re.sub(r"(\w)\.", "\1", data)
+#     data = data.replace("'", "")
+# 
+
+# If the species name have periods or quotes in them, remove them from the tree and traits
+# if "." in data2 or "'" in data2:
+    # data2 = data2.re("\w\.", "")
+    # data2 = data2.replace("'", "")
+
+
+
+s = open("Species_Phylo_with_Traits.csv", "w")
 s.write(data)
+s.close() 
+
+s = open("Species_Phylo_with_Traits.txt", "w")
+s.write(data2)
 s.close()
