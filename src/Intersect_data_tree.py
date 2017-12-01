@@ -1,8 +1,7 @@
 """
-Creates an intersection of the tips in the large angiosperm tree and the data
-available in the GlobalTreeSearch (http://www.bgci.org/global_tree_search.php)
-database for woody species. It also returns a file with binary information for
-the presence or absence of woodiness traits for the species in the tree.
+Returns two files (comma and tab separated) that show the intersection of the 
+tips in the large angiosperm tree and the data available in the GlobalTreeSearch 
+(http://www.bgci.org/global_tree_search.php) database for woody species. 
 
 Simon Uribe-Convers - Nov 06, 2017 - http://simonuribe.com
 
