@@ -3,7 +3,7 @@
 ### Simon Uribe-Convers - November 7th, 2017 - http://simonuribe.com
 ---
 
-#### Mapping and reconstructing which species of angiosperms are woody.
+#### Mapping and reconstructing which species of angiosperms are woody using data from [GlobalTreeSearch](http://www.bgci.org/global_tree_search.php).
 
 Remove periods from `sp.`, `aff.`, and single quotes from species name on the tree. **Be careful** to not delete the period from the decimal point in the branch lengths.
 
