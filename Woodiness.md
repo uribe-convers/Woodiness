@@ -15,9 +15,11 @@ sed -i '' 's/\([A-z]\)\./\1/g' ALLOTB_binary_Names.tre
 sed -i "" "s/\'//g" ALLOTB_binary_Names.tre
 
 ```
+**Create the trait data that matches the tree**  
 Run `Intersect_data_tree.py` to get a file with the species on the tree that have trait data.
 
-Run `Trait_Data_on_Phylo.R` for comparative analyses, at least to check that species match on both the tree and data.
+**Ancestral State Reconstruction**  
+Run the first part of `Plotting_Ancestral_States.R` to check that species match on both the tree and data.
 
 Use `pxstrec` to map the trait. The data file has to have a header with the number of species and number of traits, a la phylip. The tree **can't** have polytomies! 
 
@@ -32,3 +34,6 @@ Humiriastrum_glaziovii	1
 
 Run it: 
 `pxstrec -t ALLOTB_binary_Names.tre -d Species_Phylo_with_Traits.txt -c control_file.txt -o ALLOTB_Ancestral_States.tre > info.txt`
+
+**Plotting the results**  
+Run the rest of `Plotting_Ancestral_States.R` to plot the results. _Beware_ of the size of the pdf files that are created! Opening them on Adobe Acrobat seemed to work better than Apple's Preview. 
